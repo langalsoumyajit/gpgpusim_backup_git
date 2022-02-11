@@ -1,15 +1,13 @@
+import itertools
 
-app_list1 = ["3DS", "BFS2", "BLK", "BP", "CFD", "CONS", "FFT", "FWT", "GUPS", "HISTO", "HS", "JPEG", "LIB", "LPS", 
-		"LUD", "LUH", "NN", "NW", "RAY", "RED", "SAD", "SC", "SCAN", "SCP", "SRAD", "TRD"]
-app_list2 = ["3DS", "BFS2", "BLK", "BP", "CFD", "CONS", "FFT", "FWT", "GUPS", "HISTO", "HS", "JPEG", "LIB", "LPS", 
-		"LUD", "LUH", "NN", "NW", "RAY", "RED", "SAD", "SC", "SCAN", "SCP", "SRAD", "TRD"]
-app_comb = ""
+app_list1 = ["3DS", "BFS2", "BLK", "BP", "CONS", "FFT", "JPEG", "LIB", "LPS", "RAY", "RED", "SAD", "SC", "SCAN", "SCP", "SRAD", "TRD"]
 
-for app1 in app_list1:
-	for app2 in app_list2:
-		if app1 != app2:
-			app_comb = app1 + "_" + app2
-			print(app_comb)
+all_combinations = []
+
+for r in range(2,3):
+        combinations_object = itertools.combinations(app_list1, r)
+        combinations_list = list(combinations_object)
+        all_combinations += combinations_list
 	
 
 	
