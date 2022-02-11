@@ -4,20 +4,24 @@ import sys
 import re
 
 #------------------------------- Invalid number of argument checker------------------------
-if(len(sys.argv) == 3):
+if(len(sys.argv) == 5):
 	print("Good to go")
+elif(len(sys.argv) == 3):
+	exit("ERROR !!!! : Please enter initial CTA values")
 else:
-	exit("ERROR !!!! : Please enter two applications name with a space in between")
+	exit("ERROR !!!! : Please enter two applications name with a space in between and initial CTAs")
 #------------------------------------------------------------------------------------------
 
 #-------------------------------It will create the file list-------------------------------
+cta_num0 = int(sys.argv[3])
+cta_num1 = int(sys.argv[4])
 app1 = sys.argv[1]
 app2 = sys.argv[2]
 file_name = ""
 file_list = []
 print(app1 + " " + app2)
-for i in range(4,9):
-	for j in range(4,9):
+for i in range(cta_num0,5):
+	for j in range(cta_num1,9):
 		file_name = app1 + "_" + app2 + "_" + str(i) + "_" + str(j) + ".txt"
 		file_list.append(file_name)
 #print(file_list)
@@ -33,8 +37,7 @@ for i in range(4,9):
 #----------------------------Initialized the CTA-------------------------------------------------------------------------
 str_gpu0 = "-gpgpu_shader_cta_app0"
 str_gpu1 = "-gpgpu_shader_cta_app1"
-cta_num0 = 4
-cta_num1 = 4
+
 str_write0 = "-gpgpu_shader_cta_app0" + " " + str(cta_num0)
 str_write1 = "-gpgpu_shader_cta_app1" + " " + str(cta_num1)
 f2 = open("gpgpusim.config", 'r')
@@ -125,7 +128,7 @@ for file_i in file_list:
 #=====================================================================================================================================
 #-------------------------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------Finding out best possible CTA combination---------------------------------------------------
-str_gpu_ipc = "gpu_tot_ipc =     "
+str_gpu_ipc = "gpu_tot_ipc ="
 
 ipc_dict = {}
 
