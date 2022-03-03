@@ -31,13 +31,21 @@ for i in range(len(all_combinations)):
     #sheet1.write(i, 0, all_combinations[i][0])
     #sheet1.write(i, 1, all_combinations[i][1])
     #print(all_combinations[i][0] + "_" + all_combinations[i][1] + "_4_4.txt")
-    file_name = all_combinations[i][0] + "_" + all_combinations[i][1] + "_4_4.txt"
+    file_name = all_combinations[i][0] + "_" + all_combinations[i][1] + "_4_4_3k.txt"
     file_list.append(file_name)
-i = 0
+i = 1
+sheet1.write(0, 0, "File_Name")
+sheet1.write(0, 1, "IPC")
+sheet1.write(0, 2, "MPKI_App1")
+sheet1.write(0, 3, "MPKI_App2")
 for file_i in file_list:
     f1 = open(file_i, 'r')
     lines = str(f1.read())
     line_list = lines.split("\n")
+    ipc = 0
+    dram_stall = 0
+    mpki1 = 0
+    mpki2 = 0
     for line in line_list:
         if str_gpu_ipc in line:	
             ipc = re.findall("\d+\.\d+", line)
@@ -55,11 +63,11 @@ for file_i in file_list:
             mpki2 = re.findall("\d+\.\d+", line)
             #print(mpki2)
             #print(float(ipc[0]))
-        sheet1.write(i, 0, file_i)
-        sheet1.write(i, 1, ipc)
-        sheet1.write(i, 2, mpki1)
-        sheet1.write(i, 3, mpki2)
-        i = i + 1
+    sheet1.write(i, 0, file_i)
+    sheet1.write(i, 1, ipc)
+    sheet1.write(i, 2, mpki1)
+    sheet1.write(i, 3, mpki2)
+    i = i + 1
     f1.close()
     
 wb.save('xlwt example.xls')
